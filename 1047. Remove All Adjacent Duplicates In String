@@ -49,3 +49,41 @@ class Solution {
         System.out.print(removeDuplicates(a));
     }
 }
+==========================================================================================================
+class Solution {
+    public static String removeDuplicates(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            // if the current character is same as the last one in `sb`
+            // then we cannot push it to `sb`
+            // we remove the one in `sb`
+            if (sb.length() > 0 && sb.charAt(sb.length() - 1) == c)                                 sb.deleteCharAt(sb.length() - 1);
+            // otherwise, add the current character to `sb`
+            else sb.append(c);
+        }
+        return sb.toString();
+    }
+public static void main(String[] args) {
+         Scanner z=new Scanner(System.in);
+        String a=z.nextLine();
+        System.out.print(removeDuplicates(a));
+    }
+}
+
+public static String removeDuplicates(String s) {
+        Stack<Character> st= new Stack<>();
+        StringBuffer sb = new StringBuffer();
+        st.push(s.charAt(s.length()-1));
+        for (int i =  s.length()-2; i >= 0; i--) {
+            if (!st.isEmpty() && st.peek() == s.charAt(i)) {
+                st.pop();
+            } else {
+                st.push(s.charAt(i));
+            }
+        }
+        while  (st.size() != 0) {
+            sb.append(st.pop());
+        }
+        return sb.toString();
+    }
+
